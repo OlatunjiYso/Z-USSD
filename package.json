@@ -1,0 +1,32 @@
+{
+  "name": "z-ussd",
+  "version": "1.0.0",
+  "description": "A Backend Service to Handle USSD Request.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start-dev": "nodemon src/index.js --exec babel-node --presets babel-preset-env",
+    "build": "babel src -d dist",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlatunjiYso/Z-USSD.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlatunjiYso/Z-USSD/issues"
+  },
+  "homepage": "https://github.com/OlatunjiYso/Z-USSD#readme"
+}
