@@ -1,3 +1,6 @@
+import { asterisksCount } from '../Helpers/main';
+import selfDeposit from './selfDeposit';
+
 const mainController = (req, res) => {
   const { sessionId, serviceCode, phoneNumber, text } = req.body;
   const welcomeMessage = `CON Welcome, what will you like to do?
@@ -13,14 +16,12 @@ const mainController = (req, res) => {
   } 
   
   if (text == '1') {
-    let response = `CON Choose account information you want to view
-    1. Account number
-    2. Account balance`
+    let response = `CON Please enter your recharge pin and hit Send`
     return res.send(response)
   } 
 
   if (text == '2') {
-    let response = `END Your phone number is ${phoneNumber}`
+    let response = `END Please enter the recipient's account number`
     return res.send(response)
   }
 
@@ -29,19 +30,22 @@ const mainController = (req, res) => {
     return res.send(response)
   }
 
-  if (text == '1*1') {
-    let accountNumber = '22785609874'
-    let response = `END Your account number is ${accountNumber}`
+  if (text.startsWith('1') && asterisksCount(text) == 1) {
+    return selfDeposit(req, res);
+  }
+
+  if (text.startsWith('1') && asterisksCount(text) == 2 && text.endsWith('1')) {
+    let response = `Kindly exit and dial *669# to open an account`
     return res.send(response)
   }
 
-  if (text == '1*2') {
-    let balance = 'NGN 10,000'
-    let response = `END Your balance is ${balance}`
+  if (text.startsWith('1') && asterisksCount(text) == 2 && text.endsWith('2')) {
+    let response = `Okay, see you next time`
     return res.send(response)
   }
-  
-  return res.status(400).send(welcomeMessage)
+
+  let response = `END Invalid entry. Please try again.`
+  return res.status(400).send(response);
   
 }
 
