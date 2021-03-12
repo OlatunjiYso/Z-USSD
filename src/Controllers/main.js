@@ -2,6 +2,7 @@ import { asterisksCount } from '../Helpers/main';
 import selfDeposit from './selfDeposit';
 
 const mainController = (req, res) => {
+  try {
   const { sessionId, serviceCode, phoneNumber, text } = req.body;
   const welcomeMessage = `CON Welcome, what will you like to do?
   1. Deposit-Self
@@ -45,13 +46,20 @@ const mainController = (req, res) => {
   }
 
   if (text.startsWith('1') && asterisksCount(text) == 2 && text.endsWith('2')) {
-    let response = `Okay, see you next time`
+    let response = 'Okay, see you next time'
     return res.send(response)
   }
 
   let response = `END Invalid entry. Please try again.`
   return res.status(400).send(response);
   
+  } catch(error) {
+    console.log('we encountered an erorroooororor');
+    console.log(error)
+    console.log(error.message);
+    console.log(error.stack);
+    console.log(error.trace)
+  }
 }
 
 export default mainController;
