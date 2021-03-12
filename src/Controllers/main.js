@@ -2,7 +2,6 @@ import { asterisksCount } from '../Helpers/main';
 import selfDeposit from './selfDeposit';
 
 const mainController = (req, res) => {
-  try {
   const { sessionId, serviceCode, phoneNumber, text } = req.body;
   const welcomeMessage = `CON Welcome, what will you like to do?
   1. Deposit-Self
@@ -32,7 +31,7 @@ const mainController = (req, res) => {
   }
 
   if (text == '6') {
-    let response = `Kindly exit and dial *669# to open an account`
+    let response = `Kindly exit to open an account`
     return res.send(response)
   }
 
@@ -52,14 +51,6 @@ const mainController = (req, res) => {
 
   let response = `END Invalid entry. Please try again.`
   return res.status(400).send(response);
-  
-  } catch(error) {
-    console.log('we encountered an erorroooororor');
-    console.log(error)
-    console.log(error.message);
-    console.log(error.stack);
-    console.log(error.trace)
-  }
 }
 
 export default mainController;
