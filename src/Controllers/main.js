@@ -40,16 +40,18 @@ const mainController = (req, res) => {
   }
 
   if (text.startsWith('1') && asterisksCount(text) == 2 && text.endsWith('1')) {
+    console.log('==============1  ========1')
     let response = `Kindly exit and dial *669# to open an account`
     return res.send(response)
   }
 
   if (text.startsWith('1') && asterisksCount(text) == 2 && text.endsWith('2')) {
+    console.log('=========================1 ======2')
     let response = 'Okay, see you next time'
     return res.send(response)
   }
 
-  let response = `END Invalid entry. Please try again.`
+  let response = `END Invalid entry. Please try again. *669#`
   return res.status(400).send(response);
 }
 
