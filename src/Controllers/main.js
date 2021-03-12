@@ -30,6 +30,11 @@ const mainController = (req, res) => {
     return res.send(response)
   }
 
+  if (text == '6') {
+    let response = `Kindly exit and dial *669# to open an account`
+    return res.send(response)
+  }
+
   if (text.startsWith('1') && asterisksCount(text) == 1) {
     return selfDeposit(req, res);
   }

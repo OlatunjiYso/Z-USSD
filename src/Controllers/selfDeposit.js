@@ -5,12 +5,12 @@ const selfDeposit = (req, res) => {
     const { sessionId, serviceCode, phoneNumber, text } = req.body;
     const voucher = text.split('*')[1];
 
-    // if(!confirmPhone(phoneNumber)) {
-    //     const message = `CON There is no account registered with this number, will you like to open one?
-    //     1. Yes, please
-    //     2. No, never mind.`
-    //     return res.send(message);
-    // }  
+    if(!confirmPhone(phoneNumber)) {
+        const message = `CON There is no account registered with this number, will you like to open one?
+        1. Yes, please
+        2. No, never mind.`
+        return res.send(message);
+    }  
 
     if(!confirmVoucher(voucher)) {
         const message = `END Sorry, this recharge PIN is invalid.`
